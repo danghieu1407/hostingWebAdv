@@ -356,7 +356,7 @@ $(document).ready(function() {
 
 
     console.log('Mở kết nối tới sever')
-    const socket = io('http://localhost:3000');
+    const socket = io('https://hostingwebadv-production.up.railway.app');
 
     socket.on('connect', () => {
         console.log('đã kết nối thành công')
