@@ -1,0 +1,59 @@
+<div class=" sjfsj text-center" id="centerleft">
+    <span class=""><img class="img-fluid" src=" <%= user.avatar%>" alt=""></span>
+    <h5 class="text-center pt-3">
+        <%= user.name%>
+    </h5>
+    <p class="text-muted text-center">
+        <%= user.role%>
+    </p>
+    <hr>
+
+    <div class="text-center">
+        <a href="/UserProfile" class="snip1582">
+            Trang cá nhân
+        </a>
+    </div>
+
+    <% if( user.role!="Student" ) {%>
+        <div class="text-center">
+            <a href="/adminmanager" class="snip1582">
+                Manager Faculty
+            </a>
+        </div>
+
+
+        <% if( user.role=="Law" || user.role=="CNTT" || user.role=="TCNH" || user.role=="Admin") {%>
+            <div class="text-center">
+                <a href="/editaccount" class="snip1582">
+                    Change Password
+                </a>
+            </div>
+            <% }%>
+
+                <div class="text-center">
+                    <a id="OpenModalPostNotification" class="snip1582">
+                        Đăng thông báo
+                    </a>
+
+                </div>
+                <% }%>
+
+
+                    <div class="dropdown">
+                        <button class="dropbtn snip1582">Xem Thông Báo</button>
+                        <div class="dropdown-content">
+                            <a class="dropdown-item" href="/Notification">Tất cả thông báo</a>
+                            <h6>Phòng Ban</h6>
+                            <a class="dropdown-item" href="/Notification?Type=PDH">Phòng Đại Học</a>
+                            <a class="dropdown-item" href="/Notification?Type=PTC">Phòng tài chính</a>
+                            <a class="dropdown-item" href="/Notification?Type=PKT">Phòng Khảo Thí</a>
+                            <a class="dropdown-item" href="/Notification?Type=PDT">Phòng điện toán và máy tính</a>
+                            <h6>Khoa</h6>
+                            <a class="dropdown-item" href="/Notification?Type=CNTT">Khoa Công Nghệ Thông Tin</a>
+                            <a class="dropdown-item" href="/Notification?Type=TCNH">Tài Chính Ngân Hàng</a>
+                            <a class="dropdown-item" href="/Notification?Type=Law">Khoa Luật</a>
+                            <a class="dropdown-item" href="/Notification?Type=QTKT">Khoa Quản Trị Kinh Doanh</a>
+                            <a class="dropdown-item" href="/Notification?Type=MTCN">Phòng Mĩ Thuật Công Nghiệp</a>
+                        </div>
+                    </div>
+</div>

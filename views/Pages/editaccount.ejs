@@ -1,0 +1,47 @@
+<div class="col-md-6" id="createaccount">
+    <div class="box1">
+        <h1 class="text-center">Đổi mật khẩu </h1>
+        <form action="/editaccount" method="POST">
+            <div class="form-group">
+                <label for="user">Nhập mật khẩu cũ</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+
+                    </div>
+                    <input name="password" id="password" type="password" class="form-control" placeholder="Enter old password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user">Nhập mật khẩu mới</label>
+                <div class="input-group mb-3">
+                    <input name="newPassword" id="newPassword" type="password" class="form-control" placeholder="Enter new password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="user">Xác nhận mật khẩu mới</label>
+                <div class="input-group mb-3">
+                    <input name="confirmPassword" id="confirmPassword" type="password" class="form-control" placeholder="Confirm new password">
+                </div>
+            </div>
+            <div class="form-group">
+                <% if (locals.errorMessage) { %>
+                    <div class="alert alert-danger">
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+
+                        <% if (locals.successMessage) { %>
+                            <div class="alert alert-success">
+                                <%= successMessage %>
+                            </div>
+                            <% } %>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success" id="btn-create">Đổi mật khẩu</button>
+
+
+        </form>
+    </div>
+
+</div>

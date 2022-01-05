@@ -1,0 +1,169 @@
+<h1>Thông báo gần đây</h1>
+<hr>
+
+<%if(Type==null){%>
+<div class="NotificationItem">
+    <% for(let i =0; i < result.length; i++) { %>
+        <h5 class = "title text-danger text-uppercase"><%=result[i].title %></h5>
+        <h6 class = "Faculty">From:<%=result[i].creator %> </h6>
+        <a data-title="<%=result[i].title%>" data-content="<%=result[i].content %>" href="" class="OpenDetailNotification">
+            Xem chi tiết thông báo
+        </a>
+        <hr>
+    <%}%>
+</div>
+<hr>
+<div class="Pagination">
+    <div class="row">
+        <% if(Pages > 0) { %>
+            <nav class="mx-auto">
+                <ul class="pagination">
+                    <% if(page == 1) { %> 
+                        <li class="page-item disabled">
+                            <a class="page-link"  href="/Notification?Page=<%=i%>">First</a>
+                        </li>
+                    <%}else{%>
+                        <li class="page-item ">
+                            <a class="page-link"  href="/Notification?Page=<%=i%>">First</a>
+                        </li>
+                    <%}%>
+                    <% var i = (Number(page) > 3 ? Number(page) - 2 : 1) %> 
+                    <% if(i !== 1) { %>
+                        <li class="page-item disabled">
+                          <a class="page-link" href="#">...</a>
+                        </li>
+                    <% } %>
+                    <% for(; i <= (Number(page) + 2) && i <= Pages; i++) { %>
+                        <% if(i == page) { %>
+                            <li class="page-item active">
+                              <a class="page-link" href="/Notification?Page=<%=i%>">
+                                <%= i %>
+                              </a>
+                            </li>
+                        <% } else { %>
+                            <li class="page-item">
+                                <a class="page-link" href="/Notification?Page=<%=i%>">
+                                <%= i %>
+                                </a>
+                            </li>
+                        <% } %>
+                        <% if (i == Number(page) + 2 && i < Pages) { %>
+                            <li class="page-item disabled">
+                              <a class="page-link" href="#">...</a>
+                            </li>
+                        <% } %>
+                    <% } %>
+                    <% if(page == Pages) { %> 
+                       
+                             <li class="page-item disabled">
+                               <a class="page-link" href="">
+                                 Last
+                               </a>
+                             </li>
+                         <% } else { %>
+                       
+                             <li class="page-item">
+                               <a class="page-link" href="/Notification?Page=<%=Pages%>"">
+                                 Last
+                               </a>
+                             </li>
+                         <% } %>
+                </ul>
+            </nav>
+        <%}%>
+    </div>
+</div>
+<%}else{%>
+    <div class="NotificationItem">
+        <% for(let i =0; i < result.length; i++) { %>
+            <h5 class = "title text-danger text-uppercase"><%=result[i].title %></h5>
+            <h6 class = "Faculty">From:<%=result[i].creator %> </h6>
+            <a data-title="<%=result[i].title%>" data-content="<%=result[i].content %>" href="" class="OpenDetailNotification">
+                Xem chi tiết thông báo
+            </a>
+            <hr>
+        <%}%>
+    </div>
+    <hr>
+    <div class="Pagination">
+        <div class="row">
+            <% if(Pages > 0) { %>
+                <nav class="mx-auto">
+                    <ul class="pagination">
+                        <% if(page == 1) { %> 
+                            <li class="page-item disabled">
+                                <a class="page-link"  href="/Notification?Page=<%=i%>?Type=<%=Type%>">First</a>
+                            </li>
+                        <%}else{%>
+                            <li class="page-item ">
+                                <a class="page-link"  href="/Notification?Page=<%=i%>?Type=<%=Type%>">First</a>
+                            </li>
+                        <%}%>
+                        <% var i = (Number(page) > 3 ? Number(page) - 2 : 1) %> 
+                        <% if(i !== 1) { %>
+                            <li class="page-item disabled">
+                              <a class="page-link" href="#">...</a>
+                            </li>
+                        <% } %>
+                        <% for(; i <= (Number(page) + 2) && i <= Pages; i++) { %>
+                            <% if(i == page) { %>
+                                <li class="page-item active">
+                                  <a class="page-link" href="/Notification?Page=<%=i%>?Type=<%=Type%>">
+                                    <%= i %>
+                                  </a>
+                                </li>
+                            <% } else { %>
+                                <li class="page-item">
+                                    <a class="page-link" href="/Notification?Page=<%=i%>?Type=<%=Type%>">
+                                    <%= i %>
+                                    </a>
+                                </li>
+                            <% } %>
+                            <% if (i == Number(page) + 2 && i < Pages) { %>
+                                <li class="page-item disabled">
+                                  <a class="page-link" href="#">...</a>
+                                </li>
+                            <% } %>
+                        <% } %>
+                        <% if(page == Pages) { %> 
+                           
+                                 <li class="page-item disabled">
+                                   <a class="page-link" href="">
+                                     Last
+                                   </a>
+                                 </li>
+                             <% } else { %>
+                           
+                                 <li class="page-item">
+                                   <a class="page-link" href="/Notification?Page=<%=Pages%>?Type=<%=Type%>">
+                                     Last
+                                   </a>
+                                 </li>
+                             <% } %>
+                    </ul>
+                </nav>
+            <%}%>
+        </div>
+    </div>
+<%}%>
+
+<div class="modal fade" id="DetailNotification">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chi tiết thông báo:</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h4 class="text-danger text-uppercase" id="TitleNotification"></h4>
+                <p id="FacultyNotification"  class=" text-uppercase"></p>
+               <div class="ContentNotification"></div>
+            </div>
+
+            <!-- Modal footer -->
+        </div>
+    </div>
+</div>

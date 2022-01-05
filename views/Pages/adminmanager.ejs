@@ -1,0 +1,145 @@
+<div class="" id="createaccount">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>ID</th>
+                <th>Họ tên đơn vị</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Phòng/Khoa</th>
+                <th>Vai trò</th>
+                <th>Thao tác</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <%  userList.forEach(function(doc,index){ %>
+                <tr id="<%= doc.authId %>">
+                    <td>
+                        <%= index+1%>
+                    </td>
+                    <td>
+                        <%= doc.authId %>
+                    </td>
+                    <td>
+                        <%= doc.name %>
+                    </td>
+                    <td>
+                        <%= doc.email %>
+                    </td>
+                    <td>
+                        <%= doc.password %>
+                    </td>
+                    <td>
+                        <%= doc.Faculty %>
+                    </td>
+                    <td>
+                        <%= doc.role %>
+                    </td>
+
+                    <% if(doc.role!="Student"){ %>
+                        <td>
+                            <a data-id="<%= doc.authId %>" data-name="<%= doc.success %>" class="edit-btn" id="edit-btn" href="/editaccountByAdmin">Chỉnh sửa</a>
+                            <!-- <a data-id="<%= doc.authId %>" data-name="<%= doc.name %>" class="edit-btn" id="edit-btn" href="/editaccount" hidden>Chỉnh sửa</a> -->
+
+                            <% if( doc.role!="Admin" ) {%>
+                                <a data-id="<%= doc.authId %>" data-name="<%= doc.name %>" class="delete-btn" id="delete-btn" href="/deleteaccount">Xóa</a>
+                                <% } %>
+                        </td>
+                </tr>
+                <% } %>
+
+                    <%  }) %>
+        </tbody>
+    </table>
+    <div>
+        <a href="/createaccount" class="btn btn-succes" id="btn-create" style="background-color: green;color: white;">
+                Tạo tài khoản
+            </a>
+    </div>
+
+</div>
+
+
+<!--Modal xóa user-->
+<div class="modal fade" id="confirmDelete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+        </div>
+    </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Tiêu đề -->
+            <div class="modal-header">
+                <h4 class="modal-title">Xóa sản phẩm</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Nội dung -->
+            <div class="modal-body">
+                Chắc chắn xóa tài khoản <strong id="product-name">ABC</strong> ?
+            </div>
+
+            <!-- 2 nút -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-confirm-delete">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editModal">
+
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Tiêu đề -->
+            <div class="modal-header">
+                <h4 class="modal-title">Đổi mật khẩu cho tài khoản <strong id="user-name">ABC</strong></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Nội dung -->
+            <div class="modal-body" id="modalresetbody">
+                <form action="/editaccountByAdmin" method="POST">
+                    <div class="form-group">
+                        <label for="user">Nhập mật khẩu cũ</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+
+                            </div>
+                            <input name="password" id="password" type="password" class="form-control" value="" placeholder="Enter old password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="user">Nhập mật khẩu mới</label>
+                        <div class="input-group mb-3">
+                            <input name="newPassword" id="newPassword" type="password" class="form-control" value="" placeholder="Enter new password">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user">Xác nhận mật khẩu mới</label>
+                        <div class="input-group mb-3">
+                            <input name="confirmPassword" id="confirmPassword" type="password" class="form-control" value="" placeholder="Confirm new password">
+                        </div>
+                    </div>
+                    <input type="text" id="edituser" value="" hidden>
+
+
+                </form>
+            </div>
+
+            <!-- 2 nút -->
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-success btn-confirm-edit " id="btn-edit">Đổi mật khẩu</button>
+            </div>
+
+        </div>
+    </div>
+</div>

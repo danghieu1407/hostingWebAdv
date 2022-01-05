@@ -1,0 +1,102 @@
+<!-- <div class="jfheuf"> -->
+
+<table class="table table-dark">
+    <h1 class="text-center">Thông tin cá nhân</h1>
+
+    <thead>
+        <tr>
+            <td>Ảnh Đại Diện</td>
+            <td>
+                <div class="sjfsj">
+                    <img src="<%= userother.avatar%>" alt="" readonly>
+                </div>
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                Tên
+                <input value="<%= userother.name%>" type="text" class="form-control" id="Name" placeholder="Nhập Tên"
+                    readonly>
+            </td>
+            <td>
+                Lớp
+                <input value="<%= userother.Class%>" type="text" class="form-control" id="Class" placeholder="Nhập Lớp"
+                    readonly>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Khoa
+                <select id="Class" class="form-control">
+                    <%if( user.Faculty=="Law" ){%>
+                        <option value="Law" selected>Luật</option>
+                        <%}else if( user.Faculty=="MTCN" ){%>
+                            <option value="MTCN" selected>Mỹ Thuật-Công Nghiệp</option>
+                            <%}else if( user.Faculty=="Electric" ){%>
+                                <option value="Electric" selected>Điện - Điện Tử</option>
+                                <%}else if( user.Faculty=="TCNH" ){%>
+                                    <option value="TCNH" selected>Tài Chính Ngân Hàng</option>
+                                    <%}else if( user.Faculty=="CNTT" ){%>
+                                        <option value="CNTT" selected>Công Nghệ Thông Tin</option>
+                                        <%}else if( user.Faculty=="QTKD" ){%>
+                                            <option value="QTKD" selected>Quản Trị Kinh Doanh</option>
+                                            <%}else if( user.Faculty=="BGLD" ){%>
+                                                <option value="BHLD" selected>Môi trường và bảo hộ lao động</option>
+                                                <%}else if( user.Faculty=="LDCD" ){%>
+                                                    <option value="LDCD" selected>Lao động công đoàn</option>
+                                                    <%}else if( user.Faculty=="GDQT" ){%>
+                                                        <option value="GDQT" selected>Giáo dục quốc tế</option>
+                                                        <%}else{%>
+                                                            <option value="" selected>Chọn Khoa</option>
+                                                            <%}%>
+
+                </select>
+            </td>
+            <td>
+                Gmail
+                <input value="<%= userother.email%>" type="text" class="form-control" id="gmail" readonly>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<div id="CollectionDiv" data-code="2" data-id="<%=userother.authId%>"  class ="LoadMoreEvent">
+    <h3 class="text-center">Bài Đăng</h3>
+    <% for (var i=0; i <post.length; i++) { %>
+        <div class="box1" id="<%= post[i]._id%>">
+            <div class="d-flex skfjkk">
+                <div class="lkt40 ">
+                    <img class="avt" src="<%=userother.avatar%>" alt="">
+                </div>
+                <div class="pl-2 pt-1 ">
+                    <h6 class="namePage" >
+                        <%=userother.name%>
+                    </h6>
+                </div>
+            </div>
+            <hr>
+            <p id="content" class="text-muted " name="content">
+            <h6 class="content">
+                <%= post[i].content %>
+            </h6>
+            </p>
+            <hr>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <i class="fa fa-heart"></i>
+                    Like
+                </div>
+                <div data-id="<%= post[i]._id%>" class="OpenCommentModal">
+                    <i class="fa fa-comment"></i>
+                    Comments
+                </div>
+
+            </div>
+
+        </div>
+        <br>
+        <%}%>
+</div>

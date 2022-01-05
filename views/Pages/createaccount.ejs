@@ -1,0 +1,78 @@
+<div class="col-md-6" id="createaccount">
+    <div class="box1">
+        <h1 class="text-center">Tạo tài khoản </h1>
+        <form action="/createaccount" method="POST">
+            <div class="form-group">
+                <label for="user">Name</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+
+                    </div>
+                    <input name="name" id="name" type="text" class="form-control" placeholder="Enter a name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user">Email</label>
+                <div class="input-group mb-3">
+                    <input name="email" id="email" type="text" class="form-control" placeholder="Enter a email">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="user">Password</label>
+                <div class="input-group mb-3">
+                    <input name="password" id="password" type="password" class="form-control" placeholder="Enter a password">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user">Choose a Faculty</label>
+                <div class="input-group mb-3">
+                    <select name="faculty" class="select1">
+                        <option name="CNTT" value="CNTT">Công nghệ thông tin</option>
+                        <option name="TCNH" value="TCNH">Tài chính ngân hàng</option>
+                        <option name="Law" value="Law">Luật</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user">Choose a Role</label>
+                <div class="input-group mb-3">
+                    <select name="role" class="select1">
+                        <option name="CNTT" value="CNTT">Công nghệ thông tin</option>
+                        <option name="TCNH" value="TCNH">Tài chính ngân hàng</option>
+                        <option name="Law" value="Law">Luật</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="user">Choose a Avatar</label>
+                <div class="input-group mb-3">
+                    <select name="avatar" class="select1">
+                        <option name="cntt" value="https://fita.vnua.edu.vn/wp-content/uploads/2021/01/cong-nghe-thong-tin-la-gi.jpg" >Công nghệ thông tin</option>
+                        <option name="tcnh" value="https://file.vnua.edu.vn/data/0/images/2020/06/01/tiengviet/2020-1-6-tcnh001.jpg?w=680" >Tài chính ngân hàng</option>
+                        <option name="Law" value="http://luatsutrankhacthanh.com/wp-content/uploads/2015/08/tu-van-luat7.jpg" >Luật</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <% if (locals.errorMessage) { %>
+                    <div class="alert alert-danger">
+                        <%= errorMessage %>
+                    </div>
+                    <% } %>
+
+                        <% if (locals.successMessage) { %>
+                            <div class="alert alert-success">
+                                <%= successMessage %>
+                            </div>
+                            <% } %>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success" id="btn-create">Tạo</button>
+
+
+        </form>
+    </div>
+
+</div>

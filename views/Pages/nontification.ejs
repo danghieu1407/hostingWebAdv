@@ -1,0 +1,17 @@
+<form method="POST" id="nontification">
+    <hr>
+    <div class="d-flex justify-content-around">
+
+      
+        <div>
+            <h6>
+                <i class="fas fa-book-open text-info pr-1"></i> write an article
+            </h6>
+        </div>
+    </div>
+    <input type="text" id="authId" name="authId" value="<%user.authId%>" hidden="true">
+    <textarea name="nontification" id="nontification" cols="3" rows="3" class="form-control postindex"
+        placeholder="Write Something...." required></textarea>
+    <hr>
+    <input type="submit" value="Đăng bài viết" id="btnPost" class="btn btn-info pull-right">
+</form>

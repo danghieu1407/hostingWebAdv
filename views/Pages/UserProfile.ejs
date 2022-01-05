@@ -1,0 +1,167 @@
+<!-- <div class="jfheuf"> -->
+
+
+<table class="table table-dark">
+    <h1 class="text-center">Thông tin cá nhân</h1>
+    <form method="post" id="FormUserProfile">
+        <thead>
+            <tr>
+                <td>Ảnh Đại Diện</td>
+                <td>
+                    <div class="sjfsj">
+                        <img src="<%= user.avatar%>" alt="">
+                    </div>
+                </td>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Tên
+                    <input value="<%= user.name%>" name="name" type="text" class="form-control" id="Name" placeholder="Nhập Tên">
+                </td>
+                <td>
+                    Lớp
+                    <input value="<%= user.Class%>" name="Class" type="text" class="form-control" id="Class" placeholder="Nhập Lớp">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Khoa
+                    <select name="Faculty" id="Class" class="form-control">
+                            <%if( user.Faculty=="Law" ){%>
+                                <option value="Law" selected>Luật</option>
+                                <%}else if( user.Faculty=="MTCN" ){%>
+                                    <option value="MTCN" selected>Mỹ Thuật-Công Nghiệp</option>
+                                    <%}else if( user.Faculty=="Electric" ){%>
+                                        <option value="Electric" selected>Điện - Điện Tử</option>
+                                        <%}else if( user.Faculty=="TCNH" ){%>
+                                            <option value="TCNH" selected>Tài Chính Ngân Hàng</option>
+                                            <%}else if( user.Faculty=="CNTT" ){%>
+                                                <option value="CNTT" selected>Công Nghệ Thông Tin</option>
+                                                <%}else if( user.Faculty=="QTKD" ){%>
+                                                    <option value="QTKD" selected>Quản Trị Kinh Doanh</option>
+                                                    <%}else if( user.Faculty=="BGLD" ){%>
+                                                        <option value="BHLD" selected>Môi trường và bảo hộ lao động
+                                                        </option>
+                                                        <%}else if( user.Faculty=="LDCD" ){%>
+                                                            <option value="LDCD" selected>Lao động công đoàn</option>
+                                                            <%}else if( user.Faculty=="GDQT" ){%>
+                                                                <option value="GDQT" selected>Giáo dục quốc tế</option>
+                                                                <%}else{%>
+                                                                    <option value="" selected>Chọn Khoa</option>
+                                                                    <%}%>
+                                                                        <option value="Law">Luật</option>
+                                                                        <option value="MTCN">Mỹ Thuật-Công Nghiệp
+                                                                        </option>
+                                                                        <option value="Electric">Điện - Điện Tử</option>
+                                                                        <option value="CNTT">Công Nghệ Thông Tin
+                                                                        </option>
+                                                                        <option value="QTKD">Quản Trị Kinh Doanh
+                                                                        </option>
+                                                                        <option value="BHLD">Môi trường và bảo hộ lao
+                                                                            động</option>
+                                                                        <option value="LDCD">Lao động công đoàn</option>
+                                                                        <option value="TCNH">Tài Chính Ngân Hàng
+                                                                        </option>
+                                                                        <option value="GDQT">Giáo dục quốc tế</option>
+                        </select>
+                </td>
+                <td>
+                    Gmail
+                    <input value="<%= user.email%>" type="text" class="form-control" id="gmail" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="form-control" value="Lưu Thông Tin">
+                </td>
+            </tr>
+        </tbody>
+    </form>
+</table>
+
+<div id="CollectionDiv" data-code="2" data-id="<%=user.authId%>" class="LoadMoreEvent">
+
+    <h3 class="text-center">Bài Đăng</h3>
+    <% for (var i=0; i <post.length; i++) { %>
+        <div class="box1" id="<%= post[i]._id%>">
+            <div class="d-flex skfjkk">
+                <div class="lkt40 ">
+                    <img class="avt" src="<%=user.avatar%>" alt="">
+                </div>
+                <div class="pl-2 pt-1 ">
+                    <h6 class="namePage">
+                        <%=user.name%>
+                    </h6>
+
+                    <a data-id="<%= post[i]._id%>" href="/DeletePost" id="btn-delete">Delete</a>
+                    <a data-content="<%= post[i].content%>" data-id="<%= post[i]._id%>" href="/Edit" class="btn-edit">Edit</a>
+                </div>
+            </div>
+            <hr>
+            <p id="content" class="text-muted " name="content">
+                <h6 class="content">
+                    <%= post[i].content %>
+                </h6>
+            </p>
+            <hr>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <i class="fa fa-heart"></i> Like
+                </div>
+                <div data-id="<%= post[i]._id%>" class="OpenCommentModal">
+                    <i class="fa fa-comment"></i> Comments
+                </div>
+
+            </div>
+
+        </div>
+        <br>
+
+        <%}%>
+</div>
+
+
+
+<div class="modal fade" id="editPost">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chỉnh Sửa Bài Viêt</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form method="POST" id="EditContent">
+                    <div class="d-flex justify-content-around">
+                        <div>
+                            <h6><i class="fas fa-edit text-primary pr-1"></i>Share an update</h6>
+                        </div>
+                        <div>
+                            <h6>
+                                <i class="fas fa-arrow-up text-success pr-1"></i> upload a photo
+                            </h6>
+                        </div>
+                        <div>
+                            <h6>
+                                <i class="fas fa-book-open text-info pr-1"></i> write an article
+                            </h6>
+                        </div>
+                    </div>
+
+                    <input type="text" id="IDForEditContent" value="" hidden>
+                    <textarea name="content" id="contentedit" cols="3" rows="3" class="form-control" placeholder="Write Something...." value=""></textarea>
+                    <hr>
+                    <input type="submit" value="Sửa bài viết" class="btn btn-info pull-right">
+                </form>
+            </div>
+
+            <!-- Modal footer -->
+        </div>
+    </div>
+</div>

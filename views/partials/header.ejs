@@ -1,0 +1,27 @@
+<nav id="navbarcss" class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container" >
+        <a class="navbar-brand" href="/">Hệ Thống Thông Tin Sinh Viên</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+            aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <div class="mx-auto">
+                
+            </div>
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+            
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <button class="dropbtn"><img src="<%= user.avatar%>" alt="" style="width: 25px;margin-top: 9px; border-radius: 50px; margin-left: 8px;">
+                        </button>
+                        <div id="dropdowncontent" class="dropdown-content">
+                        <a id="logoutdropdown" href="/logout">Log Out</a>
+                      
+                        </div>
+                      </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

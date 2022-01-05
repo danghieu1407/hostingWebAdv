@@ -1,0 +1,67 @@
+<div id="messages"></div>
+<div class="jfheuf">
+    <form method="POST" id="PostContent">
+        <hr>
+        <div class="d-flex justify-content-around">
+
+            <div>
+                <h6><i class="fas fa-edit text-primary pr-1"></i>Share an update</h6>
+            </div>
+            <div>
+                <h6>
+                    <i id="uploadimage" class="fas fa-arrow-up text-success pr-1"></i> upload a photo
+                </h6>
+            </div>
+            <div>
+                <h6>
+                    <i class="fas fa-book-open text-info pr-1"></i> write an article
+                </h6>
+            </div>
+        </div>
+        <input type="text" id="authId" name="authId" value="<%user.authId%>" hidden="true">
+        <textarea name="content" id="content" cols="3" rows="3" class="form-control postindex"
+            placeholder="Write Something...." required></textarea>
+        <hr>
+        <input type="submit" value="Đăng bài viết" id="bthPost" class="btn-7 ">
+        <hr>
+    </form>
+</div>
+
+
+<div id="CollectionDiv" data-code="1" class ="LoadMoreEvent">
+    <% for (var i=0; i <post.length; i++) { %>
+        <div class="box1" id="<%= post[i]._id%>">
+            <div class="d-flex skfjkk">
+                <div class="lkt40 ">
+                    <img class="avt" src="<%= post[i].user.avatar%>" alt="">
+                </div>
+                <div class="pl-2 pt-1 ">
+                    <h6 class="name">
+                        <a class="namePage" href="/PageOfUser?authId=<%=post[i].user.authId%>">
+                            <%= post[i].user.name%>
+                        </a>
+                    </h6>
+                </div>
+            </div>
+            <hr>
+            <p id="content" class="text-muted " name="content">
+            <h6 class="content">
+                <%= post[i].content%>
+            </h6>
+            </p>
+            <hr>
+            <div class="d-flex justify-content-around">
+                <div>
+                    <i class="fa fa-heart"></i> Like
+                </div>
+                <div data-id="<%= post[i]._id%>" class="OpenCommentModal">
+                    <i class="fa fa-comment"></i>
+                    Comments
+                </div>
+            </div>
+        </div>
+        <%}%>
+</div>
+
+
+
