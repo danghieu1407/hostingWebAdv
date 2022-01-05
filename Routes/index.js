@@ -152,6 +152,12 @@ router.get('/', isLoggedIn, (req, res, next) => {
 
 
 router.post('/', isLoggedIn, (req, res, next) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     new Post({
         creator: userTDTU.authId,
         content: req.body.content,
@@ -169,7 +175,13 @@ router.post('/', isLoggedIn, (req, res, next) => {
 
 });
 
-router.post('/nontification', (req, res) => {
+router.post('/nontification',isLoggedIn, (req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     console.log(req.body)
     new Notification({
         creator: userTDTU.role,
@@ -184,7 +196,13 @@ router.post('/nontification', (req, res) => {
         res.send(result);
     })
 });
-router.get('/logout', function(req, res, next) {
+router.get('/logout', isLoggedIn, function(req, res, next) {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     if (req.session) {
         // delete session object
         req.session.destroy(function(err) {
@@ -198,7 +216,13 @@ router.get('/logout', function(req, res, next) {
     }
 
 });
-router.post('/DeletePost', function(req, res) {
+router.post('/DeletePost',isLoggedIn, function(req, res) {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
 
     query = { _id: ObjectId((req.body.IDPost)) }
     Post.deleteOne(query, function(err, result) {
@@ -211,7 +235,13 @@ router.post('/DeletePost', function(req, res) {
         }
     })
 });
-router.post("/EditPost", function(req, res) {
+router.post("/EditPost",isLoggedIn, function(req, res) {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     query = { _id: ObjectId(req.body.IDPost) }
     Post.findOneAndUpdate(query, { $set: { content: req.body.content, update_at: new Date() } }, { new: true }, function(err, result) {
         if (err) console.log(err);
@@ -221,6 +251,12 @@ router.post("/EditPost", function(req, res) {
     })
 })
 router.get("/UserProfile", isLoggedIn, (req, res, next) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     skip = 10
     Post.find({ creator: userTDTU.authId }).sort({ _id: -1 }).limit(10).then((result) => {
         res.render('./Pages/UserProfile', { user: userTDTU, post: result });
@@ -228,6 +264,12 @@ router.get("/UserProfile", isLoggedIn, (req, res, next) => {
 
 });
 router.post("/UserProfile", isLoggedIn, (req, res, next) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     const { name, Class, Faculty } = req.body;
     query = { authId: req.user.authId };
     var data = { name: name, Class: Class, Faculty: Faculty };
@@ -244,6 +286,7 @@ router.post("/UserProfile", isLoggedIn, (req, res, next) => {
 
 });
 router.get('/createaccount', isLoggedIn, (req, res) => {
+    
     if (!req.user) {
         userTDTU = tempcc
 
@@ -303,7 +346,13 @@ router.post('/createaccount', isLoggedIn, (req, res) => {
 
 
 })
-router.post('/loadComment', (req, res) => {
+router.post('/loadComment',isLoggedIn, (req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     Comment.find({ IdOfPost: req.body.IDPost }).sort({ _id: 1 }, ).then((result) => {
         UserTDT.find({}, (err, doc) => {
             if (err) {
@@ -314,7 +363,13 @@ router.post('/loadComment', (req, res) => {
         })
     })
 })
-router.post("/SendComment", (req, res) => {
+router.post("/SendComment", isLoggedIn,(req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     new Comment({
         IdOfPost: req.body.IDPost,
         content: req.body.comment,
@@ -331,7 +386,13 @@ router.post("/SendComment", (req, res) => {
 
     });
 })
-router.post("/DeleteComment", function(req, res) {
+router.post("/DeleteComment", isLoggedIn, function(req, res) {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
 
     Comment.findOneAndDelete({ _id: ObjectId(req.body.IDComment) }, function(err, result) {
         if (err) console.log(err);
@@ -342,6 +403,12 @@ router.post("/DeleteComment", function(req, res) {
 })
 
 router.get("/PageOfUser", isLoggedIn, (req, res, next) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     skip = 10;
     IdOtherUser = req.query.authId;
     if (userTDTU.authId == IdOtherUser) {
@@ -361,7 +428,13 @@ router.get("/PageOfUser", isLoggedIn, (req, res, next) => {
 
 })
 
-router.post("/LoadMoreEvent", (req, res) => {
+router.post("/LoadMoreEvent",isLoggedIn, (req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     let code = req.body.code
     if (code == 1) {
         Post.aggregate([{
@@ -400,6 +473,12 @@ router.post("/LoadMoreEvent", (req, res) => {
 })
 
 router.get("/Notification", isLoggedIn, (req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     let page = req.query.Page || 1;
     let Type = req.query.Type || null;
     if (Type === null) {
@@ -424,6 +503,12 @@ router.get("/Notification", isLoggedIn, (req, res) => {
 
 })
 router.get('/adminmanager', isLoggedIn, (req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
         if (!req.user) {
             userTDTU = tempcc
 
@@ -458,6 +543,12 @@ router.get('/adminmanager', isLoggedIn, (req, res) => {
 //     })
 // });
 router.post('/deleteaccount', isLoggedIn, function(req, res) {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     if (!req.user) {
         userTDTU = tempcc
 
@@ -533,6 +624,12 @@ router.post('/editaccount', isLoggedIn, (req, res) => {
 
 })
 router.post('/editaccountByAdmin', isLoggedIn, (req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     const body = req.body
     UserTDT.findOne({ authId: body.authId })
         .then(user => {
@@ -565,7 +662,13 @@ router.post('/editaccountByAdmin', isLoggedIn, (req, res) => {
             }
         })
 })
-router.get("/fakerdata", (req, res) => {
+router.get("/fakerdata",isLoggedIn, (req, res) => {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     for (let i = 11; i <= 20; i++) {
         new Notification({
             content: "Day la notification " + i,
@@ -581,7 +684,13 @@ router.get("/fakerdata", (req, res) => {
     }
 })
 
-router.get('/DELETEALL', function(req, res) {
+router.get('/DELETEALL',isLoggedIn, function(req, res) {
+    if (!req.user) {
+        userTDTU = tempcc
+
+    } else {
+        userTDTU = req.user;
+    }
     Notification.deleteMany({}, function(err, result) {});
 });
 
