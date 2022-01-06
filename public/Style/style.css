@@ -276,7 +276,7 @@ p.item {
     bottom: -80px;
 }
 .containerlogin{
-    font-family: 'Poppins',sans-serif;
+  font-family: 'Baloo 2', cursive;
     height: 520px;
     width: 400px;
     background-color: rgba(255,255,255,0.13);
@@ -297,7 +297,7 @@ p.item {
 }
 
 .containerlogin input{
-    font-family: 'Poppins',sans-serif;
+  font-family: 'Baloo 2', cursive;
     display: block;
     height: 50px;
     width: 100%;
@@ -309,7 +309,7 @@ p.item {
     font-weight: 300;
 }
 .buttonlogin{
-    font-family: 'Poppins',sans-serif;
+  font-family: 'Baloo 2', cursive;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
