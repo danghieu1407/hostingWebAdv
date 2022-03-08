@@ -7,7 +7,7 @@ var router = express.Router();
 passport.use(new GoogleStrategy({
         clientID: "609305227636-5lp0eotrvf8g52aldfb379ppr3dsmeib.apps.googleusercontent.com",
         clientSecret: "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",
-        callbackURL: "https://hostingwebadv-production.up.railway.app/auth/google/callback"
+        callbackURL: "https://hostingwebadv-production-3ddd.up.railway.app/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
         var filter1 = /^([a-zA-Z0-9_\.\-])+\@student.tdtu.edu.vn+$/;
