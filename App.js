@@ -29,12 +29,8 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
-const io = require("socket.io")(httpServer, {
-    cors: {
-      origin: "https://webbachay.up.railway.app",
-      methods: ["GET", "POST"]
-    }
-  });
+const io = socketio(httpSever)
+
 console.log("Server started on port" + port);
 
 io.on('connection',client =>{
