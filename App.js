@@ -29,7 +29,10 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
-const io = socketio("httpSever")
+const io = socketio(httpSever);
+
+ //ádjnasd
+
 
 console.log("Server started on port" + port);
 
@@ -37,6 +40,7 @@ io.on('connection',client =>{
     console.log('client connected')
 
     client.on('disconnect', ()=> console.log(`${client.id} has left`))
+
     client.send('hello tui la dang hieu')
 
     client.on('postnontification',  postnontificationfromsever =>{
