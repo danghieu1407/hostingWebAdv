@@ -8,7 +8,7 @@ var authRouter = require('./Routes/auth');
 var IndexRouter = require('./Routes/index');
 const bp = require('body-parser')
 const server = require("http").Server(app);
-const socketio = require('socket.io')(server, { cors: { origin: "*" } });
+const io = require('socket.io')(server, { cors: { origin: "*" } });
 
 var cors = require('cors');
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -35,7 +35,7 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
-const io = socketio(httpSever);
+
 
 
 console.log("Server started on port" + port);
