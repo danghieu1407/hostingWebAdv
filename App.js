@@ -9,6 +9,8 @@ var IndexRouter = require('./Routes/index');
 const bp = require('body-parser')
 const socketio = require('socket.io')
 
+var cors = require('cors');
+app.use(cors());
 
 const expressLayouts = require('express-ejs-layouts');
 app.set("layout", "./Layout/layout");
@@ -31,7 +33,6 @@ const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
 const io = socketio(httpSever);
 
- //ádjnasd
 
 
 console.log("Server started on port" + port);
