@@ -7,6 +7,7 @@ var authRouter = require('./Routes/auth');
 // var UserRouter        = require('./Routes/user');
 var IndexRouter = require('./Routes/index');
 const bp = require('body-parser')
+const server = require("http").Server(app);
 const socketio = require('socket.io')(server, { cors: { origin: "*" } });
 
 var cors = require('cors');
