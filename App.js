@@ -29,8 +29,12 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
-const io = socketio(httpSever)
-
+const io = require("socket.io")(httpServer, {
+    cors: {
+      origin: "http://localhost:8080",
+      methods: ["GET", "POST"]
+    }
+  });
 console.log("Server started on port" + port);
 
 io.on('connection',client =>{
