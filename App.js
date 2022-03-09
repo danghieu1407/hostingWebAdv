@@ -29,7 +29,7 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
-const io = socketio(httpSever)
+const io = socketio("httpSever")
 
 console.log("Server started on port" + port);
 
