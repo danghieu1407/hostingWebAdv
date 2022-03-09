@@ -31,8 +31,14 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
-const io = socketio(httpSever);
+const io = socketio(httpSever)(server, { cors: { origin: "*" } });
 
+//add cors policies
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 
 console.log("Server started on port" + port);
