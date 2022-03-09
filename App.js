@@ -7,10 +7,11 @@ var authRouter = require('./Routes/auth');
 // var UserRouter        = require('./Routes/user');
 var IndexRouter = require('./Routes/index');
 const bp = require('body-parser')
-const socketio = require('socket.io')
-
 var cors = require('cors');
 app.use(cors());
+const socketio = require('socket.io')(server, { cors: { origin: "*" } });
+
+
 
 const expressLayouts = require('express-ejs-layouts');
 app.set("layout", "./Layout/layout");
@@ -31,7 +32,7 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
-const io = socketio(httpSever)(server, { cors: { origin: "*" } });
+const io = socketio(httpSever);
 
 //add cors policies
 app.use(function(req, res, next) {
