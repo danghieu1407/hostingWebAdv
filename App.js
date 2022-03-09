@@ -8,13 +8,9 @@ var authRouter = require('./Routes/auth');
 var IndexRouter = require('./Routes/index');
 const bp = require('body-parser')
 const server = require("http").Server(app);
-const io = require('socket.io')(server, { cors: { origin: "*" } });
 
-var cors = require('cors');
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(express.json())
-app.use(cors())
+
+
 
 const expressLayouts = require('express-ejs-layouts');
 app.set("layout", "./Layout/layout");
@@ -35,6 +31,12 @@ app.use('/auth', authRouter);
 
 const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
+const io = require('socket.io')(httpSever, { cors: { origin: "*" } });
+var cors = require('cors');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.use(express.json())
+app.use(cors())
 
 
 
