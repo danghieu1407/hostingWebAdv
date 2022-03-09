@@ -31,7 +31,7 @@ const port = process.env.PORT || 8080;
 const httpSever = app.listen(port);
 const io = require("socket.io")(httpServer, {
     cors: {
-      origin: "http://localhost:8080",
+      origin: "https://webbachay.up.railway.app",
       methods: ["GET", "POST"]
     }
   });
